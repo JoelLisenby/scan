@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 
 $url = filter_var($_GET['url'], FILTER_VALIDATE_URL);
 
-if($url) {
+if(!empty($url)) {
 	$stmt = $db->prepare('SELECT * FROM webscanner.scans WHERE url = :url ORDER BY date DESC');
 	$stmt->execute(array('url'=>$url));
 	$scan = $stmt->fetchAll(PDO::FETCH_ASSOC);
